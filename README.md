@@ -68,7 +68,7 @@ The application uses a global sustainable energy dataset containing:
 - Electricity generation data  
 - CO₂ emissions  
 - GDP and population statistics  
-
+- Link: https://www.kaggle.com/datasets/anshtanwar/global-data-on-sustainable-energy/data
 ---
 
 ## Installation
