@@ -70,7 +70,28 @@ The application uses a global sustainable energy dataset containing:
 - GDP and population statistics  
 - Link: https://www.kaggle.com/datasets/anshtanwar/global-data-on-sustainable-energy/data
 ---
+## Screenshot
+![shap_value](shap_value.png)
+![shape_yearwise](shap_yearwise.png)
+![Mean_value](Mean_shap.png)
+![Figure1](Figure1.png)
+![Figure2](Figure2.png)
+![Figure3](Figure3.png)
 
+
+---
+## Use Cases
+- Smart building energy management
+- Sustainability and policy analysis
+- Academic and research projects
+- Data science portfolios
+
+---
+## Contributing
+
+Contributions are welcome. Please fork the repository and submit a pull request for review.
+
+---
 ## Installation
 
 Clone the repository:
