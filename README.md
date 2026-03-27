@@ -73,10 +73,10 @@ The application uses a global sustainable energy dataset containing:
 ## Screenshot
 ![shap_value](shap_value.png)
 ![shape_yearwise](shap_yearwise.png)
-![Mean_value](Mean_shap.png)
-![Figure1](Figure1.png)
-![Figure2](Figure2.png)
-![Figure3](Figure3.png)
+![Mean_value](mean_shap.png)
+![Figure1](Figure_1.png)
+![Figure2](Figure_2.png)
+![Figure3](Figure_3.png)
 
 
 ---
