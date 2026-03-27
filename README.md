@@ -1,91 +1,80 @@
-⚡ Smart Energy Optimization System for Buildings
+# Smart Energy Optimization System for Buildings
 
-🚀 Live App:
-👉 Open Streamlit App:https://blh4aiynjiyr5u9drsyejz.streamlit.app/
+[![Python](https://img.shields.io/badge/Python-3.10-blue)](https://www.python.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-Live_App-red)](https://blh4aiynjiyr5u9drsyejz.streamlit.app/)
+[![License](https://img.shields.io/badge/License-MIT-yellow)](#license)
+[![Status](https://img.shields.io/badge/Status-Active-success)]()
 
-📌 Overview
+## Live Application
 
-This project is an AI-powered energy analytics and forecasting system designed to analyze global energy data and provide insights into:
+Access the deployed application here:  
+https://blh4aiynjiyr5u9drsyejz.streamlit.app/
 
-Renewable energy usage 🌱
-Energy consumption trends 📊
-Future energy forecasting 🔮
-Optimization recommendations 💡
+---
 
-It combines Machine Learning + Time Series Forecasting + Explainable AI to help understand and optimize energy usage.
+## Overview
 
-🎯 Features
-🔮 1. Live Prediction
-Predicts renewable energy share (%)
-Uses Random Forest model
-Interactive sliders for real-time input
-📊 2. Model Performance
-Displays:
-MSE (Mean Squared Error)
-R² Score
-Visualizes Actual vs Predicted values
-📈 3. Energy Trends & Forecasting
-Time-series visualization
-Rolling average smoothing
-🔥 ARIMA-based forecasting
-Predicts future energy usage dynamically
-⚡ 4. Energy Insights
-Peak vs Average energy usage
-Detects abnormal spikes
-Provides quick system-level understanding
-🧠 5. Explainable AI (XAI)
-SHAP → global feature importance
-LIME → local prediction explanation
-Helps understand why predictions happen
-🧠 Technologies Used
-Frontend/UI: Streamlit
-Machine Learning: Scikit-learn
-Time Series Forecasting: Statsmodels
-Data Processing: Pandas, NumPy
-Visualization: Plotly, Matplotlib, Seaborn
-Explainability: SHAP, LIME
-📂 Dataset
-Global dataset on sustainable energy
-Includes:
-Energy consumption ⚡
-CO₂ emissions 🌍
-GDP & population 📈
-Electricity generation sources
-⚙️ Installation
-git clone <your-repo-link>
-cd your-project
-pip install -r requirements.txt
-streamlit run app.py
-📊 How It Works
-Upload dataset (CSV)
-Select target variable
-Train ML model
-Explore:
-Predictions
-Trends
-Forecasts
-Insights
-Explainability
-📸 Screenshots (Optional)
+The Smart Energy Optimization System is a data-driven application designed to analyze global energy consumption patterns and predict renewable energy trends. It integrates machine learning, time series forecasting, and explainable AI techniques into an interactive web interface.
 
-Add screenshots like:
+The system allows users to upload datasets, train predictive models, visualize trends, and interpret results with transparency.
 
-Dashboard view
-Forecast graph
-SHAP output
-🚀 Future Improvements
-🔥 LSTM-based deep learning forecasting
-🌦️ Weather-integrated predictions
-🏢 Building-level energy optimization
-⚡ Real-time IoT integration
-🎓 Use Cases
-Smart buildings
-Energy policy analysis
-Sustainability research
-Data science projects
-👨‍💻 Author
-Developed as part of Data Analytics / AI project
-Focus: Energy Intelligence + Explainable AI
-⭐ If you like this project
+---
 
-Give it a ⭐ on GitHub and share!
+## Features
+
+### Predictive Modeling
+- Train a machine learning model to estimate renewable energy share
+- Interactive input interface for real-time predictions
+- Based on Random Forest regression
+
+### Performance Evaluation
+- Displays Mean Squared Error (MSE)
+- Displays R² Score
+- Compares actual vs predicted values visually
+
+### Time Series Analysis
+- Visualizes historical energy trends
+- Applies rolling average smoothing
+- Forecasts future values using ARIMA
+
+### Energy Insights
+- Identifies peak energy usage
+- Computes average consumption
+- Helps detect patterns and irregularities
+
+### Explainable AI
+- SHAP for global feature importance
+- LIME for local prediction interpretation
+- Enhances model transparency and trust
+
+---
+
+## Technology Stack
+
+- Frontend: Streamlit  
+- Data Processing: Pandas, NumPy  
+- Machine Learning: Scikit-learn  
+- Time Series Forecasting: Statsmodels (ARIMA)  
+- Visualization: Plotly, Matplotlib, Seaborn  
+- Explainability: SHAP, LIME  
+
+---
+
+## Dataset
+
+The application uses a global sustainable energy dataset containing:
+
+- Renewable energy metrics  
+- Electricity generation data  
+- CO₂ emissions  
+- GDP and population statistics  
+
+---
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
