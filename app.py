@@ -14,7 +14,7 @@ from lime.lime_tabular import LimeTabularExplainer
 
 
 st.set_page_config(page_title="Energy AI", layout="wide")
-st.title("⚡ Smart Energy Optimization System for Buildings")
+st.title("⚡ Smart Energy Optimization System for Buildings Using Predictive & Explainable AI")
 
 keys = ["data", "model", "trained", "X_train", "y_train", "X_test", "y_test", "task"]
 for k in keys:
