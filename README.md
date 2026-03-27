@@ -79,18 +79,11 @@ The application uses a global sustainable energy dataset containing:
 ![Figure3](Figure_3.png)
 
 <img width="1898" height="754" alt="Screenshot 2026-03-27 181036" src="https://github.com/user-attachments/assets/4a131e4b-3caa-4269-8a0c-053e6f83069b" />
-<img width="1898" height="754" alt="Screenshot 2026-03-27 181036" src="https://github.com/user-attachments/assets/4a131e4b-3caa-4269-8a0c-053e6f83069b" />
-<img width="1019" height="570" alt="Screenshot 2026-03-27 181024" src="https://github.com/user-attachments/assets/a50fc940-38f1-43fd-a493-8941c7204198" />
 <img width="1019" height="570" alt="Screenshot 2026-03-27 181024" src="https://github.com/user-attachments/assets/a50fc940-38f1-43fd-a493-8941c7204198" />
 <img width="1310" height="411" alt="Screenshot 2026-03-27 181009" src="https://github.com/user-attachments/assets/2c8f218e-c12e-4edd-884d-621b74c921c5" />
-<img width="1310" height="411" alt="Screenshot 2026-03-27 181009" src="https://github.com/user-attachments/assets/2c8f218e-c12e-4edd-884d-621b74c921c5" />
-<img width="1879" height="779" alt="Screenshot 2026-03-27 181002" src="https://github.com/user-attachments/assets/e8949167-9d91-4c84-a9c0-cc2714d86e90" />
 <img width="1879" height="779" alt="Screenshot 2026-03-27 181002" src="https://github.com/user-attachments/assets/e8949167-9d91-4c84-a9c0-cc2714d86e90" />
 <img width="1856" height="821" alt="Screenshot 2026-03-27 180947" src="https://github.com/user-attachments/assets/5ded2290-8b2f-4a4f-8f3d-1c7971b411a8" />
-<img width="1856" height="821" alt="Screenshot 2026-03-27 180947" src="https://github.com/user-attachments/assets/5ded2290-8b2f-4a4f-8f3d-1c7971b411a8" />
 <img width="1844" height="696" alt="Screenshot 2026-03-27 180603" src="https://github.com/user-attachments/assets/00567e1d-d48b-4554-8578-e658c40d35a5" />
-<img width="1844" height="696" alt="Screenshot 2026-03-27 180603" src="https://github.com/user-attachments/assets/00567e1d-d48b-4554-8578-e658c40d35a5" />
-<img width="1917" height="885" alt="Screenshot 2026-03-27 180534" src="https://github.com/user-attachments/assets/f6ab7fff-377b-4f95-a69f-76ee10483e2f" />
 <img width="1917" height="885" alt="Screenshot 2026-03-27 180534" src="https://github.com/user-attachments/assets/f6ab7fff-377b-4f95-a69f-76ee10483e2f" />
 
 ---
