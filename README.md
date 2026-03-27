@@ -2,7 +2,6 @@
 
 [![Python](https://img.shields.io/badge/Python-3.10-blue)](https://www.python.org/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-Live_App-red)](https://blh4aiynjiyr5u9drsyejz.streamlit.app/)
-[![License](https://img.shields.io/badge/License-MIT-yellow)](#license)
 [![Status](https://img.shields.io/badge/Status-Active-success)]()
 
 ## Live Application
