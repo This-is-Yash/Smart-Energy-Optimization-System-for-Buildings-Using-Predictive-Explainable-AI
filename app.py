@@ -1,3 +1,127 @@
+# # =========================================================
+# # 🧭 MULTI DASHBOARD (NEW - DOES NOT TOUCH YOUR OLD CODE)
+# # =========================================================
+# # if data is not None:
+# if 'data' in locals() and data is not None:
+#     st.divider()
+#     st.header("⚡ Advanced Smart Energy Analytics")
+
+#     tab1, tab2, tab3, tab4 = st.tabs([
+#         "📅 Energy Trends",
+#         "⚡ Peak Analysis",
+#         "💡 Optimization",
+#         "🧠 Feature Insights"
+#     ])
+
+#     # =========================================================
+#     # 📅 TAB 1: TIME SERIES / TREND PREDICTION
+#     # =========================================================
+#     with tab1:
+#         st.subheader("📅 Energy Consumption Trends")
+
+#         possible_date_cols = [col for col in data.columns if "date" in col.lower()]
+
+#         if possible_date_cols:
+#             date_col = possible_date_cols[0]
+#             data[date_col] = pd.to_datetime(data[date_col])
+
+#             df_ts = data[[date_col, target]].sort_values(by=date_col)
+
+#             fig = px.line(df_ts, x=date_col, y=target, title="Energy Usage Over Time")
+#             st.plotly_chart(fig)
+
+#             # 🔮 Rolling Prediction (lightweight forecasting)
+#             df_ts["Rolling Mean"] = df_ts[target].rolling(window=5).mean()
+
+#             fig2 = px.line(
+#                 df_ts,
+#                 x=date_col,
+#                 y=[target, "Rolling Mean"],
+#                 title="Trend + Predicted Pattern"
+#             )
+#             st.plotly_chart(fig2)
+
+#         else:
+#             st.warning("⚠️ No date column found for trend analysis.")
+
+#     # =========================================================
+#     # ⚡ TAB 2: PEAK DETECTION
+#     # =========================================================
+#     with tab2:
+#         st.subheader("⚡ Peak Energy Analysis")
+
+#         peak = data[target].max()
+#         avg = data[target].mean()
+#         min_val = data[target].min()
+
+#         col1, col2, col3 = st.columns(3)
+
+#         col1.metric("🔺 Peak", round(peak, 2))
+#         col2.metric("📊 Average", round(avg, 2))
+#         col3.metric("🔻 Minimum", round(min_val, 2))
+
+#         if peak > avg * 1.5:
+#             st.error("🚨 Abnormal energy spike detected!")
+#         else:
+#             st.success("✅ Energy usage is stable.")
+
+#         fig = px.box(data, y=target, title="Energy Distribution")
+#         st.plotly_chart(fig)
+
+#     # =========================================================
+#     # 💡 TAB 3: SMART RECOMMENDATIONS
+#     # =========================================================
+#     with tab3:
+#         st.subheader("💡 AI-Based Energy Optimization Suggestions")
+
+#         try:
+#             if 'lime_exp' in locals():
+
+#                 recommendations = []
+
+#                 for feature, weight in lime_exp.as_list():
+#                     if weight > 0:
+#                         recommendations.append(f"Reduce {feature} to lower energy usage")
+#                     else:
+#                         recommendations.append(f"{feature} is already efficient")
+
+#                 for rec in recommendations[:5]:
+#                     st.write("👉", rec)
+
+#             else:
+#                 st.warning("Run prediction first to generate recommendations.")
+
+#         except Exception as e:
+#             st.warning(f"Recommendation error: {e}")
+
+#     # =========================================================
+#     # 🧠 TAB 4: FEATURE IMPORTANCE
+#     # =========================================================
+#     with tab4:
+#         st.subheader("🧠 Top Features Driving Energy Consumption")
+
+#         try:
+#             importances = st.session_state.model.feature_importances_
+#             features = st.session_state.X_train.columns
+
+#             imp_df = pd.DataFrame({
+#                 "Feature": features,
+#                 "Importance": importances
+#             }).sort_values(by="Importance", ascending=False)
+
+#             st.dataframe(imp_df)
+
+#             fig = px.bar(
+#                 imp_df.head(10),
+#                 x="Importance",
+#                 y="Feature",
+#                 orientation="h",
+#                 title="Top 10 Important Features"
+#             )
+#             st.plotly_chart(fig)
+
+#         except Exception as e:
+#             st.warning(f"Feature importance not available: {e}")
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -12,36 +136,28 @@ from sklearn.metrics import mean_squared_error, r2_score, accuracy_score
 import shap
 from lime.lime_tabular import LimeTabularExplainer
 
-st.set_page_config(page_title="⚡ AI Dashboard", layout="wide")
-st.title("Smart Energy Optimization System for Buildings Using Predictive & Explainable AI")
 
-# ==============================
-# 🔥 SESSION STATE
-# ==============================
-for key in ["data", "model", "trained", "X_train", "y_train", "X_test", "y_test", "task"]:
-    if key not in st.session_state:
-        st.session_state[key] = None
+st.set_page_config(page_title="Energy AI", layout="wide")
+st.title("⚡ Smart Energy Optimization System for Buildings")
 
-# ==============================
-# 📂 FILE UPLOAD
-# ==============================
-files = st.file_uploader("📂 Upload CSV files", type=["csv"], accept_multiple_files=True)
+keys = ["data", "model", "trained", "X_train", "y_train", "X_test", "y_test", "task"]
+for k in keys:
+    if k not in st.session_state:
+        st.session_state[k] = None
+
+files = st.file_uploader("Upload CSV", type=["csv"], accept_multiple_files=True)
 
 if files:
-    st.session_state.data = pd.concat(
-        [pd.read_csv(f) for f in files], ignore_index=True
-    )
+    st.session_state.data = pd.concat([pd.read_csv(f) for f in files], ignore_index=True)
 
 data = st.session_state.data
 
-# ==============================
-# 📊 DATA PREVIEW
-# ==============================
 if data is not None:
-    st.subheader("📊 Data Preview")
+
+    st.subheader("Data Preview")
     st.dataframe(data.head())
 
-    target = st.selectbox("🎯 Select Target Column", data.columns)
+    target = st.selectbox("Select Target Column", data.columns)
 
     data = data.dropna(subset=[target])
 
@@ -61,10 +177,7 @@ if data is not None:
 
     st.session_state.task = task
 
-    # ==============================
-    # 🚀 TRAIN MODEL
-    # ==============================
-    if st.button("🚀 Train Model") or st.session_state.trained:
+    if st.button("Train Model") or st.session_state.trained:
 
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
@@ -78,134 +191,189 @@ if data is not None:
         st.session_state.X_test = X_test
         st.session_state.y_test = y_test
 
-        st.success("✅ Model Trained Successfully!")
+        st.success("Model Trained!")
 
-# ==============================
-# 🔮 PREDICTION + KPI + VISUALS
-# ==============================
 if st.session_state.trained:
 
-    st.subheader("🔮 Live Prediction")
+    model = st.session_state.model
+    X_train = st.session_state.X_train
 
-    input_data = {}
+    tabs = st.tabs([
+        "Prediction",
+        "Performance",
+        "Trends",
+        "Energy Insights",
+        "Explainability"
+    ])
 
-    for col in st.session_state.X_train.columns:
-        val = st.slider(
-            col,
-            float(st.session_state.X_train[col].min()),
-            float(st.session_state.X_train[col].max()),
-            float(st.session_state.X_train[col].mean())
+    with tabs[0]:
+
+        st.subheader(" Live Prediction")
+
+        input_data = {}
+
+        for col in X_train.columns:
+            val = st.slider(
+                col,
+                float(X_train[col].min()),
+                float(X_train[col].max()),
+                float(X_train[col].mean())
+            )
+            input_data[col] = val
+
+        input_df = pd.DataFrame([input_data])
+        prediction = model.predict(input_df)[0]
+
+        st.success(f" Prediction: {prediction}")
+
+    with tabs[1]:
+
+        st.subheader(" Model Performance")
+
+        y_pred = model.predict(st.session_state.X_test)
+
+        col1, col2 = st.columns(2)
+
+        if st.session_state.task == "regression":
+            mse = mean_squared_error(st.session_state.y_test, y_pred)
+            r2 = r2_score(st.session_state.y_test, y_pred)
+
+            col1.metric("MSE", round(mse, 2))
+            col2.metric("R²", round(r2, 2))
+
+        else:
+            acc = accuracy_score(st.session_state.y_test, y_pred)
+            col1.metric("Accuracy", round(acc, 2))
+
+        fig = px.scatter(
+            x=st.session_state.y_test,
+            y=y_pred,
+            labels={"x": "Actual", "y": "Predicted"}
         )
-        input_data[col] = val
-
-    input_df = pd.DataFrame([input_data])
-    prediction = st.session_state.model.predict(input_df)[0]
-
-    st.success(f"🎯 Prediction: {prediction}")
-
-    # ==============================
-    # 📊 KPI METRICS
-    # ==============================
-    st.subheader("📊 Model Performance")
-
-    y_pred = st.session_state.model.predict(st.session_state.X_test)
-
-    col1, col2 = st.columns(2)
-
-    if st.session_state.task == "regression":
-        mse = mean_squared_error(st.session_state.y_test, y_pred)
-        r2 = r2_score(st.session_state.y_test, y_pred)
-
-        col1.metric("MSE", round(mse, 2))
-        col2.metric("R² Score", round(r2, 2))
-
-    else:
-        acc = accuracy_score(st.session_state.y_test, y_pred)
-        col1.metric("Accuracy", round(acc, 2))
-
-    # ==============================
-    # 📈 ACTUAL VS PREDICTED
-    # ==============================
-    st.subheader("📈 Actual vs Predicted")
-
-    fig = px.scatter(
-        x=st.session_state.y_test,
-        y=y_pred,
-        labels={"x": "Actual", "y": "Predicted"}
-    )
-    st.plotly_chart(fig)
-
-    # ==============================
-    # 📉 RESIDUALS (REGRESSION ONLY)
-    # ==============================
-    if st.session_state.task == "regression":
-        st.subheader("📉 Residual Distribution")
-
-        residuals = st.session_state.y_test - y_pred
-        fig = px.histogram(residuals)
         st.plotly_chart(fig)
 
-    # ==============================
-    # 📊 SHAP
-    # ==============================
-    st.subheader("📊 SHAP Feature Importance")
+    with tabs[2]:
 
-    try:
-        explainer = shap.TreeExplainer(st.session_state.model)
-        shap_values = explainer(st.session_state.X_train, check_additivity=False)
+        st.subheader(" Energy Trends & Forecasting")
 
-        shap.summary_plot(shap_values, st.session_state.X_train, show=False)
-        st.pyplot(plt.gcf())
-        plt.clf()
+        col1, col2 = st.columns(2)
 
-    except Exception as e:
-        st.warning(f"SHAP failed: {e}")
+        with col1:
+            date_col = st.selectbox(" Select Date Column", ["None"] + list(data.columns))
 
-    # ==============================
-    # 💡 LIME (FIXED OUTPUT)
-    # ==============================
-    st.subheader("💡 LIME Explanation")
+        with col2:
+            value_col = st.selectbox(" Select Energy Column", list(data.columns))
 
-    try:
-        mode = "classification" if st.session_state.task == "classification" else "regression"
+        if date_col != "None":
 
-        explainer_lime = LimeTabularExplainer(
-            st.session_state.X_train.values,
-            feature_names=st.session_state.X_train.columns,
-            mode=mode
-        )
+            try:
+                df = data[[date_col, value_col]].copy()
+                df[date_col] = pd.to_datetime(df[date_col], errors='%Y')
+                df = df.dropna().sort_values(by=date_col)
 
-        lime_exp = explainer_lime.explain_instance(
-            input_df.values[0],
-            st.session_state.model.predict
-        )
+                st.markdown("###  Energy Consumption Trend")
 
-        # 🔥 Convert to readable text instead of JSON
-        for feature, weight in lime_exp.as_list():
-            st.write(f"👉 {feature} → impact: {round(weight,3)}")
+                fig1 = px.line(df, x=date_col, y=value_col)
+                st.plotly_chart(fig1, use_container_width=True)
 
-    except Exception as e:
-        st.warning(f"LIME failed: {e}")
+                df["Rolling Avg"] = df[value_col].rolling(window=5).mean()
 
-    # ==============================
-    # 🧠 FINAL INSIGHT
-    # ==============================
-    st.subheader("🧠 Final Insight")
+                st.markdown("###  Smoothed Trend (Rolling Avg)")
 
-    st.info(
-        "📌 The model predicts based on patterns learned from historical data. "
-        "SHAP shows global importance while LIME explains this specific prediction, "
-        "giving a rule-based understanding of feature influence."
-    )
+                fig2 = px.line(df, x=date_col, y=[value_col, "Rolling Avg"])
+                st.plotly_chart(fig2, use_container_width=True)
 
-# ==============================
-# 📊 CUSTOM VISUALIZATION
-# ==============================
-if data is not None:
-    st.subheader("📊 Custom Visualization")
+                st.markdown("###  Forecast Future Energy Usage")
 
-    col1 = st.selectbox("X-axis", data.columns)
-    col2 = st.selectbox("Y-axis", data.columns)
+                from statsmodels.tsa.arima.model import ARIMA
 
-    fig = px.scatter(data, x=col1, y=col2)
-    st.plotly_chart(fig)
+                forecast_days = st.slider("Forecast Days", 5, 30, 10)
+
+                ts = df.set_index(date_col)[value_col]
+
+                model_arima = ARIMA(ts, order=(2, 1, 2))
+                model_fit = model_arima.fit()
+
+                forecast = model_fit.forecast(steps=forecast_days)
+
+                future_dates = pd.date_range(
+                    start=ts.index[-1],
+                    periods=forecast_days + 1,
+                    freq="Y"
+                )[1:]
+
+                forecast_df = pd.DataFrame({
+                    date_col: future_dates,
+                    "Forecast": forecast
+                })
+
+                st.markdown("###  Actual vs Forecast")
+
+                fig3 = px.line()
+
+                fig3.add_scatter(
+                    x=df[date_col],
+                    y=df[value_col],
+                    name="Actual"
+                )
+
+                fig3.add_scatter(
+                    x=forecast_df[date_col],
+                    y=forecast_df["Forecast"],
+                    name="Forecast"
+                )
+
+                st.plotly_chart(fig3, use_container_width=True)
+
+                st.success(" Forecast generated successfully using ARIMA")
+
+            except Exception as e:
+                st.error(f" Error: {e}")
+
+        else:
+            st.info(" Please select a date column to enable trend analysis")
+    with tabs[3]:
+
+        st.subheader("Energy Insights")
+
+        peak = data[target].max()
+        avg = data[target].mean()
+
+        st.metric("Peak Usage", round(peak, 2))
+        st.metric("Average Usage", round(avg, 2))
+
+        if peak > avg * 1.5:
+            st.error("High energy spike detected")
+        else:
+            st.success("Energy usage stable")
+    with tabs[4]:
+
+        st.subheader(" SHAP + LIME")
+
+        try:
+            explainer = shap.TreeExplainer(model)
+            shap_values = explainer(X_train, check_additivity=False)
+
+            shap.summary_plot(shap_values, X_train, show=False)
+            st.pyplot(plt.gcf())
+            plt.clf()
+        except:
+            st.warning("SHAP failed")
+
+        try:
+            explainer_lime = LimeTabularExplainer(
+                X_train.values,
+                feature_names=X_train.columns,
+                mode="classification" if st.session_state.task == "classification" else "regression"
+            )
+
+            lime_exp = explainer_lime.explain_instance(
+                input_df.values[0],
+                model.predict
+            )
+
+            for f, w in lime_exp.as_list():
+                st.write(f" {f} → impact {round(w,3)}")
+
+        except:
+            st.warning("LIME failed")
