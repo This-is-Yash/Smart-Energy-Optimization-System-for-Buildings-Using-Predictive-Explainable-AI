@@ -3,9 +3,7 @@
 [![Python](https://img.shields.io/badge/Python-3.10-blue)](https://www.python.org/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-Live_App-red)](https://blh4aiynjiyr5u9drsyejz.streamlit.app/)
 [![Status](https://img.shields.io/badge/Status-Active-success)]()
-[![Hugging Face](https://img.shields.io/badge/HuggingFace-Profile-yellow?logo=huggingface)](https://huggingface.co/YOUR_USERNAME)
-![GitHub followers](https://img.shields.io/github/followers/This-is-Yash?style=social)
-![GitHub stars](https://img.shields.io/github/stars/This-is-Yash?affiliations=OWNER%2CCOLLABORATOR&style=social)
+[![Hugging Face](https://img.shields.io/badge/HuggingFace-Profile-yellow?logo=huggingface)](https://huggingface.co/Alpha1425)
 
 ## Live Application
 
