@@ -8,6 +8,7 @@
 
 Access the deployed application here:  
 https://blh4aiynjiyr5u9drsyejz.streamlit.app/
+Hugging-face: https://huggingface.co/spaces/Alpha1425/Energy_XAI
 
 ---
 
