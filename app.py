@@ -150,6 +150,7 @@ if st.session_state.trained:
                 df = df.dropna()
 
 # Aggregate by year (take average)
+                # df = df.groupby(date_col)[value_col].mean().reset_index()
                 df = df.groupby(date_col)[value_col].mean().reset_index()
 
                 df = df.sort_values(by=date_col)
