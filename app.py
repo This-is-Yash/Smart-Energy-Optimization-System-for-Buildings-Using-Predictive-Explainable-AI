@@ -146,7 +146,13 @@ if st.session_state.trained:
                 df = data[[date_col, value_col]].copy()
                 # df[date_col] = pd.to_datetime(df[date_col], errors='%Y')
                 df[date_col] = pd.to_datetime(df[date_col].astype(str), format='%Y', errors='coerce')
-                df = df.dropna().sort_values(by=date_col)
+                # df = df.dropna().sort_values(by=date_col)
+                df = df.dropna()
+
+# Aggregate by year (take average)
+                df = df.groupby(date_col)[value_col].mean().reset_index()
+
+                df = df.sort_values(by=date_col)
 
                 st.markdown("###  Energy Consumption Trend")
 
